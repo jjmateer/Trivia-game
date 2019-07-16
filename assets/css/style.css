@@ -8,42 +8,41 @@
     background-color: orange;
     border:none;
     
+    
 }
 #containerTitle{
     text-align: center;
     font-size:75px;
 }
 #startButton {
-    width:50%;
+    width:65%;
     height:75px;
-    margin-left:25%;
-    margin-right:25%;
+    margin-left:20%;
+    margin-right:20%;
     font-size:50px;
     text-align: center;
+    display:flex;
 }
 #startBtn{
     height:65px;
-    width:50%;
+    width:33%;
     border:solid black;
-    margin-left:25%;
-    margin-right:25%;
+
     
-}
-#resetButton {
-    width:50%;
-    height:75px;
-    margin-left:25%;
-    margin-right:25%;
-    font-size:50px;
 }
 #resetBtn{
     height:65px;
-    width:50%;
+    width:33%;
     border:solid black;
-    margin-left:25%;
-    margin-right:25%;
+
    
     
+}
+#nextBtn  {  
+    height:65px;
+    width:33%;
+    border:solid black;
+
 }
 #timeRemaining{
     height:5%;
@@ -53,11 +52,20 @@
     text-align: center;
 }
 #triviaQuestion{
-    height: 600px;
+    height: 200px;
     width: 100%;
     font-size:45px;
     margin-top:25px;
     text-align: center;
+}
+#userChoices{
+    width:60%;
+    margin-left:20%;
+    margin-right:20%;    
+}
+#choices{
+    width:200px;
+    height:100px;
 }
 
 #gifDiv {

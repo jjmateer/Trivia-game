@@ -1,3 +1,4 @@
+
 var timerInterval;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
@@ -5,9 +6,9 @@ var unanswered = 0;
 var questionCorrectAnswer;
 var timeLeft = 15;
 var questionNumber = 0;
-clockRunning = false;
-
-$("#resetButton").hide();
+var clockRunning = false;
+var questionChoiceshtml = [];
+// $("#resetButton").hide();
 //Array of questions
 var questions = [
     "What fast food chain sells the whopper?",
@@ -33,47 +34,56 @@ var questionChoices = [
     ["Carl's Jr.", "Burger King", "KFC", "Taco Bell"]
 ];
 
+
+
 //make an array displaying the questions, answers, and correct answers
-const questionKey = [
+var questionKey = [
     {
-        "question" : questions[0],
-        "choices" : questionChoices[0],
-        "correct" : correctChoices[0]
+        "question": questions[0],
+        "choices": questionChoices[0],
+        "correct": correctChoices[0]
     },
     {
-        "question" : questions[1],
-        "choices" : questionChoices[1],
-        "correct" : correctChoices[1]
+        "question": questions[1],
+        "choices": questionChoices[1],
+        "correct": correctChoices[1]
     },
     {
-        "question" : questions[2],
-        "choices" : questionChoices[2],
-        "correct" : correctChoices[2]
+        "question": questions[2],
+        "choices": questionChoices[2],
+        "correct": correctChoices[2]
     },
     {
-        "question" : questions[3],
-        "choices" : questionChoices[3],
-        "correct" : correctChoices[3]
+        "question": questions[3],
+        "choices": questionChoices[3],
+        "correct": correctChoices[3]
     },
     {
-        "question" : questions[4],
-        "choices" : questionChoices[4],
-        "correct" : correctChoices[4]
+        "question": questions[4],
+        "choices": questionChoices[4],
+        "correct": correctChoices[4]
     },
 ]
+
 function displayQuestion() {
     $("#triviaQuestion").html(`${questionKey[questionNumber].question} 
-    <span class="question-counter"> (Question ${questionNumber + 1} of ${questionKey.length})</span>`);
+    <span class="question"> (Question ${questionNumber + 1} of ${questionKey.length})</span>`);
+
 }
-function displayAnswers() {
-    for (i = 0; i < questionKey[questionNumber].answers.length; i++) {
-        $("#triviaQuestion").append(`<div class="answers">
-    value="${questionKey[questionNumber].correctChoices[i]}"> ${questionKey[questionNumber].correctChoices[i]}</div>`);
+
+function displayChoices() {
+    for (var i = 0; i < questionChoices[0].length; i++) {
+        questionChoiceshtml.push('<button id="choices">' + questionChoices[0][i] + '</button>');
+        console.log(Object.keys(questionKey[i]));
     }
+    $("#userChoices").html(questionChoiceshtml);
+    $("#choices").on("click", function() {
+        evaluate();
+        });
 }
 
 function timeConverter(t) {
-    let minutes = Math.floor(t/60);
+    let minutes = Math.floor(t / 60);
     let seconds = t - (minutes * 60)
     if (seconds < 10) {
         seconds = "0" + seconds;
@@ -91,9 +101,10 @@ function countdownTimer() {
     timeLeft--;
     let convertedTime = timeConverter(timeLeft);
     $("#timeRemaining").html(convertedTime);
-    if(time === 0) {
-        incorrectAnswers++;
+    if (timeLeft === 0) {
+        unanswered++;
         questionNumber++;
+        timeout();
         resetTimer();
     }
 }
@@ -101,7 +112,7 @@ function countdownTimer() {
 function resetTimer() {
     clearInterval(timerInterval);
     timeLeft = 15;
-    let convertedTime = convertTime(time);
+    let convertedTime = timeConverter(timeLeft);
     $("#timeRemaining").html(convertedTime);
 
 }
@@ -111,65 +122,86 @@ function startTimer() {
 }
 
 
-const timeouts = [
-function timeout1() {
+
+function timeout() {
+
     clearInterval(timerInterval);
     $("#startButton").text("Time out!!");
-    $("#triviaQuestion").text("The correct answer was Burger King!");
+    $("#triviaQuestion").text("The correct answer was: " + correctAnswer);
     $("#gifDiv").empty();
     $('#gifDiv').html('<img src="assets/images/burgerkinggif.webp" />');
+    setTimeout(function(){reset}, 3000);
 
 
-    unanswered++;
-},
-function timeout2() {
-    clearInterval(timerInterval);
-    $("#startButton").text("Time out!!");
-    $("#triviaQuestion").text("The correct answer was Mcdonald's!");
-    $("#gifDiv").empty();
-    $('#gifDiv').html('<img src="assets/images/mcdonaldsgif.webp" />');
-
-
-    unanswered++;
-},
-function timeout3() {
-    clearInterval(timerInterval);
-    $("#startButton").text("Time out!!");
-    $("#triviaQuestion").text("The correct answer was Taco Bell!");
-    $("#gifDiv").empty();
-    $('#gifDiv').html('<img src="assets/images/tacoBellgif.webp" />');
-
-
-    unanswered++;
-},
-function timeout4() {
-    clearInterval(timerInterval);
-    $("#startButton").text("Time out!!");
-    $("#triviaQuestion").text("The correct answer was In-N-Out!");
-    $("#gifDiv").empty();
-    $('#gifDiv').html('<img src="assets/images/inNOutgif.webp" />');
-
-
-    unanswered++;
-},
-function timeout5() {
-    clearInterval(timerInterval);
-    $("#startButton").text("Time out!!");
-    $("#triviaQuestion").text("The correct answer was KFC!");
-    $("#gifDiv").empty();
-    $('#gifDiv').html('<img src="assets/images/kfcgif.webp" />');
-
-
-    unanswered++;
-}
-];
-function startTimer() {
-    timerInterval = setInterval(decrementTimer, 1000);
-    timerRunning = true;
 }
 
+function reset() {
+    if (questionNumber === questionKey.length) {
+        clockRunning = false;
+        resetTimer();
+        $("triviaquestion").empty();
+        $("#userChoices").empty();
+        $(".timeRemaining").empty();
+        $("userchoices").html(`
+        <div>Number of correct answers: ${correctAnswers}</div>
+        <div>Number of wrong answers: ${incorrectAnswers}</div>
+        `);
 
-$("#startBtn").on("click",function() {
+    }
+    else {
+        resetTimer()
+        $("#triviaQuestion").empty();
+        displayChoices()
+        $("#userchoices").empty();
+        displayQuestion();
+        questionCorrectAnswer = questionKey[questionNumber].correct;
+        startTimer();
+        questionNumber++;
+        console.log("Correct answer: " + currentCorrectAnswer);
+    }
+}
+
+function evaluate() {
+
+    var radios = document.getElementsByName("choices");
+    var trueFalse = false;
+    var userChoice;
+    for (i = 0; i < radios.length; i++) {
+
+        if (radios[i].checked) {
+            trueFalse = true;
+            userChoice = radios[i].value;
+        }
+    }
+    if (!trueFalse) {
+        alert("timeout!!");
+        for (let i = 0; i > timeLeft; i++) { }
+        unanswered++;
+        reset();
+    }
+    else if (userChoice === questionCorrectAnswer) {
+        alert("correct!");
+        correctAnswers++;
+        questionNumber++;
+        reset();
+    } else {
+        alert("wrong!")
+        incorrectAnswers++;
+        questionNumber++;
+        reset();
+    }
+}
+
+$("#nextBtn"). on("click", function() {
+    
+});
+$("#startBtn").on("click", function() {
+    displayQuestion();
+    displayChoices();
+    startTimer();
+    $("#resetBtn").hide();
     $("#startBtn").hide();
+    $("#nextBtn").hide();
+
 
 });
