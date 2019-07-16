@@ -53,24 +53,13 @@
     text-align: center;
 }
 #triviaQuestion{
-    height: 7.5%;
+    height: 600px;
     width: 100%;
     font-size:45px;
     margin-top:25px;
     text-align: center;
 }
-#userChoices{
-    height:30%;
-    width:100%;
-    text-align: center;
-    margin-top:25px;
-    font-size:35px;
-}
 
-#choice1, #choice2, #choice3, #choice4 {
-    width:100%;
-    height:50px;
-}
 #gifDiv {
     margin-left:40%;
     margin-right:40%;
@@ -79,9 +68,4 @@
 #gifDiv img {
     width:100%;
     height:100%;
-}
-#countDisplay1, #countDisplay2, #countDisplay3 {
-width:100%;
-text-align:center;
-font-size:45px;
 }
