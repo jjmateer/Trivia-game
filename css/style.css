@@ -1,0 +1,87 @@
+
+.container {
+    width:80%;
+    margin-left:10%;
+    margin-right:10%;
+    border:solid black;
+    height:800px;
+    background-color: orange;
+    border:none;
+    
+}
+#containerTitle{
+    text-align: center;
+    font-size:75px;
+}
+#startButton {
+    width:50%;
+    height:75px;
+    margin-left:25%;
+    margin-right:25%;
+    font-size:50px;
+    text-align: center;
+}
+#startBtn{
+    height:65px;
+    width:50%;
+    border:solid black;
+    margin-left:25%;
+    margin-right:25%;
+    
+}
+#resetButton {
+    width:50%;
+    height:75px;
+    margin-left:25%;
+    margin-right:25%;
+    font-size:50px;
+}
+#resetBtn{
+    height:65px;
+    width:50%;
+    border:solid black;
+    margin-left:25%;
+    margin-right:25%;
+   
+    
+}
+#timeRemaining{
+    height:5%;
+    width:100%;
+    font-size:45px;
+    margin-top:10px;
+    text-align: center;
+}
+#triviaQuestion{
+    height: 7.5%;
+    width: 100%;
+    font-size:45px;
+    margin-top:25px;
+    text-align: center;
+}
+#userChoices{
+    height:30%;
+    width:100%;
+    text-align: center;
+    margin-top:25px;
+    font-size:35px;
+}
+
+#choice1, #choice2, #choice3, #choice4 {
+    width:100%;
+    height:50px;
+}
+#gifDiv {
+    margin-left:40%;
+    margin-right:40%;
+    width:20%;
+}
+#gifDiv img {
+    width:100%;
+    height:100%;
+}
+#countDisplay1, #countDisplay2, #countDisplay3 {
+width:100%;
+text-align:center;
+font-size:45px;
+}
