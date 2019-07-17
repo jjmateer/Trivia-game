@@ -53,11 +53,13 @@
 }
 #scoreCount{
     height:75px;
-    width:60%;
+    width:50%;
     display:flex;
     font-size:40px;
-    padding-left:20%;
-    padding-right:20%;
+    justify-content: center;
+    margin-left:25%;
+    margin-right:25%;
+    
 }
 
 #inputForm{

@@ -29,10 +29,11 @@ function countdownTimer() {
     timeLeft--;
     let convertedTime = timeConverter(timeLeft);
     $("#timeRemaining").html("Time remaining: " + convertedTime);
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
         unanswered++;
         timeout();
         clearInterval(timerInterval);
+
     }
 }
 function startTimer() {
@@ -44,18 +45,94 @@ function timeout() {
     $("#startButton").text("Time out!!");
 
 }
-$("#input13, #input23, #input33, #input42, #input51").on("click", function () {
+$("#input13").on("click", function () {
 correctAnswers++;
 console.log(correctAnswers);
-$(this).prop('disabled', true);
+$("#input13").off("click")
 
 });
-$("#input11, #input12, #input21, #input22, #input31, #input32, #input41, #input43, #input52, #input53").on("click", function() {
+$("#input23").on("click", function () {
+    correctAnswers++;
+    console.log(correctAnswers);
+    $("#input23").off("click")
+});
+$("#input33").on("click", function () {
+    correctAnswers++;
+    console.log(correctAnswers);
+    $("#input33").off("click")
+});
+$("#input42").on("click", function () {
+    correctAnswers++;
+    console.log(correctAnswers);
+    $("#input42").off("click")
+});
+$("#input51").on("click", function () {
+    correctAnswers++;
+    console.log(correctAnswers);
+    $("#input51").off("click")
+});
+
+$("#input11").on("click", function() {
     incorrectAnswers++;
     console.log(incorrectAnswers)
-    $(this).prop('disabled', true);
+    $("#input11").off("click")
 
 });
+$("#input12").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input12").off("click")
+});
+
+$("#input21").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input21").off("click")
+});
+
+$("#input22").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input22").off("click")
+});
+
+$("#input31").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input31").off("click")
+});
+
+$("#input32").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input32").off("click")
+});
+
+$("#input41").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input41").off("click")
+});
+
+$("#input43").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input43").off("click")
+});
+
+$("#input52").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input52").off("click")
+});
+
+$("#input53").on("click", function() {
+    incorrectAnswers++;
+    console.log(incorrectAnswers)
+    $("#input53").off("click")
+});
+
+
 $("#startBtn").on("click", function () {
     $("#inputForm").show();
     startTimer();
@@ -65,7 +142,6 @@ $("#submit").on("click", function() {
     $("#inputForm").empty();
     $("#scoreCount").append("Correct answers: " + correctAnswers + "   ");
     $("#scoreCount").append("Incorrect answers: " + incorrectAnswers + "   ");
-    $("#scoreCount").append("Unanswered: " + unanswered + "   ");
     clearInterval(timerInterval);
     $(this).prop('disabled', true);
 
