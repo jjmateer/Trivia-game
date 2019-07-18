@@ -5,6 +5,8 @@ var incorrectAnswers = 0;
 var unanswered = 0;
 var timeLeft = 30;
 var clockRunning = false;
+var correctChoices = ["burgerking", "mcdonads", "tacobell", "innout","kfc"]
+
 $("#resetButton").hide();
 $("#question1").text("What fast food chain sells the whopper?");
 $("#question2").text("What fast food chain sells the big mac?");
@@ -45,92 +47,92 @@ function timeout() {
     $("#startButton").text("Time out!!");
 
 }
-$("#input13").on("click", function () {
-correctAnswers++;
-console.log(correctAnswers);
-$("#input13").off("click")
+// $("#input13").on("click", function () {
+// correctAnswers++;
+// console.log(correctAnswers);
+// $("#input13").off("click")
 
-});
-$("#input23").on("click", function () {
-    correctAnswers++;
-    console.log(correctAnswers);
-    $("#input23").off("click")
-});
-$("#input33").on("click", function () {
-    correctAnswers++;
-    console.log(correctAnswers);
-    $("#input33").off("click")
-});
-$("#input42").on("click", function () {
-    correctAnswers++;
-    console.log(correctAnswers);
-    $("#input42").off("click")
-});
-$("#input51").on("click", function () {
-    correctAnswers++;
-    console.log(correctAnswers);
-    $("#input51").off("click")
-});
+// });
+// $("#input23").on("click", function () {
+//     correctAnswers++;
+//     console.log(correctAnswers);
+//     $("#input23").off("click")
+// });
+// $("#input33").on("click", function () {
+//     correctAnswers++;
+//     console.log(correctAnswers);
+//     $("#input33").off("click")
+// });
+// $("#input42").on("click", function () {
+//     correctAnswers++;
+//     console.log(correctAnswers);
+//     $("#input42").off("click")
+// });
+// $("#input51").on("click", function () {
+//     correctAnswers++;
+//     console.log(correctAnswers);
+//     $("#input51").off("click")
+// });
 
-$("#input11").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input11").off("click")
+// $("#input11").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input11").off("click")
 
-});
-$("#input12").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input12").off("click")
-});
+// });
+// $("#input12").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input12").off("click")
+// });
 
-$("#input21").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input21").off("click")
-});
+// $("#input21").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input21").off("click")
+// });
 
-$("#input22").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input22").off("click")
-});
+// $("#input22").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input22").off("click")
+// });
 
-$("#input31").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input31").off("click")
-});
+// $("#input31").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input31").off("click")
+// });
 
-$("#input32").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input32").off("click")
-});
+// $("#input32").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input32").off("click")
+// });
 
-$("#input41").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input41").off("click")
-});
+// $("#input41").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input41").off("click")
+// });
 
-$("#input43").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input43").off("click")
-});
+// $("#input43").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input43").off("click")
+// });
 
-$("#input52").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input52").off("click")
-});
+// $("#input52").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input52").off("click")
+// });
 
-$("#input53").on("click", function() {
-    incorrectAnswers++;
-    console.log(incorrectAnswers)
-    $("#input53").off("click")
-});
+// $("#input53").on("click", function() {
+//     incorrectAnswers++;
+//     console.log(incorrectAnswers)
+//     $("#input53").off("click")
+// });
 
 
 $("#startBtn").on("click", function () {
@@ -139,6 +141,17 @@ $("#startBtn").on("click", function () {
     $(this).prop('disabled', true);
 });
 $("#submit").on("click", function() {
+    var checkInput = $("input:checked")
+    console.log(checkInput[0]);
+    for( var i = 0; i < checkInput.length; i++) {
+        var val = $(checkInput[i]).val();
+        if(correctChoices.includes(val)) {
+            correctAnswers++;
+
+        }
+    }
+
+    incorrectAnswers = checkInput.length - correctAnswers;
     $("#inputForm").empty();
     $("#scoreCount").append("Correct answers: " + correctAnswers + "   ");
     $("#scoreCount").append("Incorrect answers: " + incorrectAnswers + "   ");
